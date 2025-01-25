@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cake Batch Calculator 🎂</title>
+  <style>
+    :root {
+      --vanilla-color: #FFB347;
+      --chocolate-color: #6F4E37;
+      --primary-color: #2c3e50;
+      --background-color: #f8f9fa;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 2rem;
+      background-color: var(--background-color);
+      color: var(--primary-color);
+    }
+
+    h1 {
+      text-align: center;
+      color: var(--primary-color);
+      margin-bottom: 2rem;
+      font-size: 2.5rem;
+    }
+
+    .container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .column {
+      background: white;
+      padding: 2rem;
+      border-radius: 15px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .column h2 {
+      margin-top: 0;
+      padding: 1rem;
+      border-radius: 10px;
+      color: white;
+    }
+
+    .vanilla h2 { background-color: var(--vanilla-color); }
+    .chocolate h2 { background-color: var(--chocolate-color); }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      color: var(--primary-color);
+    }
+
+    input {
+      width: 100%;
+      padding: 0.8rem;
+      border: 2px solid #ddd;
+      border-radius: 8px;
+      font-size: 1rem;
+      transition: border-color 0.3s ease;
+    }
+
+    input:focus {
+      outline: none;
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 3px rgba(44, 62, 80, 0.1);
+    }
+
+    button {
+      display: block;
+      margin: 2rem auto;
+      padding: 1rem 2.5rem;
+      font-size: 1.1rem;
+      background: linear-gradient(135deg, var(--vanilla-color), var(--chocolate-color));
+      color: white;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .result-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 2rem auto;
+    }
+
+    .result-column {
+      background: white;
+      padding: 2rem;
+      border-radius: 15px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .result-column h3 {
+      margin-top: 0;
+      color: white;
+      padding: 1rem;
+      border-radius: 10px;
+    }
+
+    #vanillaResult h3 { background-color: var(--vanilla-color); }
+    #chocolateResult h3 { background-color: var(--chocolate-color); }
+
+    .ingredient-list {
+      margin-top: 1.5rem;
+      padding: 1rem;
+      background-color: #f8f9fa;
+      border-radius: 8px;
+    }
+
+    .ingredient-list p {
+      margin: 0.5rem 0;
+      line-height: 1.6;
+    }
+
+    .batch-number {
+      font-size: 1.4rem;
+      color: var(--primary-color);
+      font-weight: bold;
+      margin: 1rem 0;
+    }
+
+    @media (max-width: 768px) {
+      body {
+        padding: 1rem;
+      }
+      
+      .column {
+        padding: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Cake Batch Calculator 🎂</h1>
+  
+  <div class="container">
+    <!-- Vanilla Column -->
+    <div class="column vanilla">
+      <h2>Vanilla</h2>
+      <div class="form-group">
+        <label for="bentoVanilla">Bento (Vanilla):</label>
+        <input type="number" id="bentoVanilla" placeholder="Enter quantity" min="0">
+      </div>
+      <div class="form-group">
+        <label for="miniVanilla">Mini (Vanilla):</label>
+        <input type="number" id="miniVanilla" placeholder="Enter quantity" min="0">
+      </div>
+      <div class="form-group">
+        <label for="sixteenVanilla">16 (Vanilla):</label>
+        <input type="number" id="sixteenVanilla" placeholder="Enter quantity" min="0">
+      </div>
+      <div class="form-group">
+        <label for="twentyVanilla">20 (Vanilla):</label>
+        <input type="number" id="twentyVanilla" placeholder="Enter quantity" min="0">
+      </div>
+      <div class="form-group">
+        <label for="cupcakeVanilla">Cupcake (Vanilla):</label>
+        <input type="number" id="cupcakeVanilla" placeholder="Enter quantity" min="0">
+      </div>
+    </div>
+
+    <!-- Chocolate Column -->
+    <div class="column chocolate">
+      <h2>Chocolate</h2>
+      <div class="form-group">
+        <label for="bentoChocolate">Bento (Chocolate):</label>
+        <input type="number" id="bentoChocolate" placeholder="Enter quantity" min="0">
+      </div>
+      <div class="form-group">
+        <label for="miniChocolate">Mini (Chocolate):</label>
+        <input type="number" id="miniChocolate" placeholder="Enter quantity" min="0">
+      </div>
+      <div class="form-group">
+        <label for="sixteenChocolate">16 (Chocolate):</label>
+        <input type="number" id="sixteenChocolate" placeholder="Enter quantity" min="0">
+      </div>
+      <div class="form-group">
+        <label for="twentyChocolate">20 (Chocolate):</label>
+        <input type="number" id="twentyChocolate" placeholder="Enter quantity" min="0">
+      </div>
+      <div class="form-group">
+        <label for="cupcakeChocolate">Cupcake (Chocolate):</label>
+        <input type="number" id="cupcakeChocolate" placeholder="Enter quantity" min="0">
+      </div>
+    </div>
+  </div>
+
+  <button onclick="calculate()">Calculate Batches</button>
+
+  <div class="result-container">
+    <div class="result-column" id="vanillaResult">
+      <h3>Vanilla Recipe</h3>
+      <div class="ingredient-list">
+        <div class="batch-number">-- Batches Needed</div>
+        <p>Ingredients will appear here</p>
+      </div>
+    </div>
+    <div class="result-column" id="chocolateResult">
+      <h3>Chocolate Recipe</h3>
+      <div class="ingredient-list">
+        <div class="batch-number">-- Batches Needed</div>
+        <p>Ingredients will appear here</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function calculate() {
+      // Input values
+      const bentoChocolate = parseInt(document.getElementById('bentoChocolate').value) || 0;
+      const bentoVanilla = parseInt(document.getElementById('bentoVanilla').value) || 0;
+      const miniChocolate = parseInt(document.getElementById('miniChocolate').value) || 0;
+      const miniVanilla = parseInt(document.getElementById('miniVanilla').value) || 0;
+      const sixteenChocolate = parseInt(document.getElementById('sixteenChocolate').value) || 0;
+      const sixteenVanilla = parseInt(document.getElementById('sixteenVanilla').value) || 0;
+      const twentyChocolate = parseInt(document.getElementById('twentyChocolate').value) || 0;
+      const twentyVanilla = parseInt(document.getElementById('twentyVanilla').value) || 0;
+      const cupcakeChocolate = parseInt(document.getElementById('cupcakeChocolate').value) || 0;
+      const cupcakeVanilla = parseInt(document.getElementById('cupcakeVanilla').value) || 0;
+
+      // Constants for ingredient amounts
+      const bentoWeight = 310;
+      const miniWeight = 180 * 3;
+      const sixteenWeight = 275 * 3;
+      const twentyChocolateWeight = 420 * 4;
+      const twentyVanillaWeight = 400 * 4;
+      const cupcakeWeight = 65;
+
+      // Total ingredient weights
+      const totalChocolate = 
+        (bentoChocolate * bentoWeight) +
+        (miniChocolate * miniWeight) +
+        (sixteenChocolate * sixteenWeight) +
+        (twentyChocolate * twentyChocolateWeight) +
+        (cupcakeChocolate * cupcakeWeight);
+
+      const totalVanilla = 
+        (bentoVanilla * bentoWeight) +
+        (miniVanilla * miniWeight) +
+        (sixteenVanilla * sixteenWeight) +
+        (twentyVanilla * twentyVanillaWeight) +
+        (cupcakeVanilla * cupcakeWeight);
+
+      // Calculate batches
+      const chocolateBatches = Math.ceil(totalChocolate / 800);
+      const vanillaBatches = Math.ceil(totalVanilla / 800);
+
+      // Ingredients for Vanilla
+      const vanillaIngredients = `
+        🥛 ${1 * vanillaBatches} milk + 🍋 ${1 * vanillaBatches} lemon juice<br>
+        🧈 Butter: ${132 * vanillaBatches}g<br>
+        🍯 Sugar: ${233 * vanillaBatches}g<br>
+        🥚 Eggs: ${2 * vanillaBatches}<br>
+        🌿 Vanilla: ${2 * vanillaBatches}<br>
+        🌾 ${270 * vanillaBatches}g flour + 🥄 ${15 * vanillaBatches}g BP
+      `;
+
+      // Ingredients for Chocolate
+      const chocolateIngredients = `
+        🧈 Butter: ${113 * chocolateBatches}g<br>
+        🍯 Sugar: ${100 * chocolateBatches}g<br>
+        🥚 Eggs: ${2 * chocolateBatches}<br>
+        🌿 Vanilla: ${1 * chocolateBatches}<br>
+        🌾 ${160 * chocolateBatches}g flour + 🥄 ${10 * chocolateBatches}g BP<br>
+        🥛 ${0.5 * chocolateBatches} milk<br>
+        🍫 Nesquik: ${130 * chocolateBatches}g<br>
+        🌡 ${0.5 * chocolateBatches} hot water<br>
+        ☕ ${1 * chocolateBatches} spoons Nescafe
+      `;
+
+      // Update results
+      document.getElementById('vanillaResult').innerHTML = `
+        <h3>Vanilla Recipe</h3>
+        <div class="ingredient-list">
+          <div class="batch-number">${vanillaBatches} Batches Needed</div>
+          <p>${vanillaIngredients}</p>
+        </div>
+      `;
+
+      document.getElementById('chocolateResult').innerHTML = `
+        <h3>Chocolate Recipe</h3>
+        <div class="ingredient-list">
+          <div class="batch-number">${chocolateBatches} Batches Needed</div>
+          <p>${chocolateIngredients}</p>
+        </div>
+      `;
+    }
+  </script>
+</body>
+</html>
